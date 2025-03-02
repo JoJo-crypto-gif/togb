@@ -201,6 +201,34 @@ $conn->close();
                 </li>
                 <li>
                     <a href="javascript:void(0)" class="block py-2.5 px-4 rounded hover:bg-gray-200 dropdown-toggle hover-3d" onclick="toggleDropdown(this)">
+                        <i class="fas fa-user"></i>
+                        <span class="sidebar-text">Children</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="children/add_child.php" class="block py-2.5 px-4 rounded hover:bg-gray-200 hover-3d">
+                                <i class="fas fa-user-plus"></i>
+                                <span class="sidebar-text">Add Child</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="children/teacher_create.php" class="block py-2.5 px-4 rounded hover:bg-gray-200 hover-3d">
+                                <i class="fas fa-user-tie"></i>
+                                <span class="sidebar-text">Add New Teacher</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="children/view_teachers.php" class="block py-2.5 px-4 rounded hover:bg-gray-200 hover-3d">
+                                <i class="fas fa-user-tie"></i>
+                                <span class="sidebar-text">View Teachers</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="block py-2.5 px-4 rounded hover:bg-gray-200 dropdown-toggle hover-3d" onclick="toggleDropdown(this)">
                         <i class="fas fa-money-bill-wave"></i>
                         <span class="sidebar-text">Finance</span>
                         <i class="fas fa-chevron-down dropdown-icon"></i>
