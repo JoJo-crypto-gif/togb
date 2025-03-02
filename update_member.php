@@ -1,5 +1,5 @@
-<!-- update_member.php -->
 <?php
+// update_member.php
 include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             contact1_phone='$contact1_phone', 
             contact2_name='$contact2_name', 
             contact2_relationship='$contact2_relationship', 
-            contact2_phone='$contact2_phone' 
+            contact2_phone='$contact2_phone'
             $profile_picture_sql 
             WHERE id='$id'";
 
@@ -61,6 +61,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $notification_message = "Member $first_name $last_name has been updated.";
         $notification_sql = "INSERT INTO notifications (message, created_at) VALUES ('$notification_message', NOW())";
         $conn->query($notification_sql);
+
+        // Process children updates if provided.
+        // Expecting a POST array: children[child_id][field]
+        if (isset($_POST['children']) && is_array($_POST['children'])) {
+            foreach ($_POST['children'] as $child_id => $child_data) {
+                // Sanitize and assign child fields (we are NOT updating church_class here)
+                $child_name = $conn->real_escape_string($child_data['name']);
+                $child_dob = $conn->real_escape_string($child_data['dob']);
+                $child_school = $conn->real_escape_string($child_data['school']);
+                $child_gender = $conn->real_escape_string($child_data['gender']);
+                $child_residence = $conn->real_escape_string($child_data['residence']);
+                $child_phone = $conn->real_escape_string($child_data['phone']);
+
+                $sql_child = "UPDATE children SET 
+                                name='$child_name',
+                                dob='$child_dob',
+                                school='$child_school',
+                                gender='$child_gender',
+                                residence='$child_residence',
+                                phone='$child_phone'
+                              WHERE id='$child_id'";
+                $conn->query($sql_child);
+            }
+        }
 
         echo json_encode(['status' => 'success', 'message' => 'Member updated successfully.']);
     } else {

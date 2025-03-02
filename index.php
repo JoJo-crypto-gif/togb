@@ -213,6 +213,12 @@ $conn->close();
                             </a>
                         </li>
                         <li>
+                            <a href="children/view_children.php" class="block py-2.5 px-4 rounded hover:bg-gray-200 hover-3d">
+                                <i class="fas fa-user"></i>
+                                <span class="sidebar-text">View Children</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="children/teacher_create.php" class="block py-2.5 px-4 rounded hover:bg-gray-200 hover-3d">
                                 <i class="fas fa-user-tie"></i>
                                 <span class="sidebar-text">Add New Teacher</span>
