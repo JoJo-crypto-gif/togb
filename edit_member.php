@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
     $result = $conn->query($sql);
     $member = $result->fetch_assoc();
     
-    // Fetch children linked to this member (using member_children linking table)
+    // Fetch children linked to this member via member_children table
     $sql_children = "SELECT c.* FROM children c 
                      JOIN member_children mc ON c.id = mc.child_id 
                      WHERE mc.member_id = $id";
@@ -27,7 +27,6 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +69,6 @@ if (isset($_GET['id'])) {
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
-
 <header class="bg-white shadow-md p-4">
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-2xl font-semibold">Edit Member Details</h1>
@@ -81,13 +79,11 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </header>
-
 <div class="flex flex-1">
-    <!-- Sidebar -->
+    <!-- Sidebar (your sidebar content here) -->
     <nav class="sidebar w-64 bg-white h-screen shadow-md overflow-hidden relative">
         <div class="p-4">
             <ul class="mt-4">
-                <!-- Sidebar links -->
                 <li>
                     <a href="index.php" class="block py-2.5 px-4 rounded hover:bg-gray-200 hover-3d">
                         <i class="fas fa-home"></i>
@@ -106,7 +102,6 @@ if (isset($_GET['id'])) {
                         <span class="sidebar-text">Add Member</span>
                     </a>
                 </li>
-                <!-- ... additional sidebar links ... -->
                 <li>
                     <a href="logout.php" class="block py-2.5 px-4 rounded hover:bg-gray-200 hover-3d">
                         <i class="fas fa-sign-out-alt"></i>
@@ -160,7 +155,7 @@ if (isset($_GET['id'])) {
                     <input type="date" id="dob" name="dob" value="<?php echo htmlspecialchars($member['dob']); ?>" required class="w-full p-2 border border-gray-300 rounded mt-1 hover-3d">
                 </div>
                 <div class="col-span-1">    
-                    <label for="occupation" class="block text-gray-700">Occupation</label>
+                    <label for="occupation" class="block text-gray-700">Occupation:</label>
                     <input type="text" id="occupation" name="occupation" value="<?php echo htmlspecialchars($member['occupation']); ?>" required class="w-full p-2 border border-gray-300 rounded mt-1 hover-3d">
                 </div>
                 <div class="col-span-1">
@@ -296,10 +291,10 @@ if (isset($_GET['id'])) {
                     data: formData,
                     processData: false,
                     contentType: false,
+                    dataType: 'json', // Expect JSON response automatically
                     success: function(response) {
-                        var res = JSON.parse(response);
-                        alert(res.message);
-                        if (res.status === 'success') {
+                        alert(response.message);
+                        if (response.status === 'success') {
                             window.location.href = 'view_members.php';
                         }
                     },
