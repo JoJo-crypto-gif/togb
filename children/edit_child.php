@@ -98,6 +98,7 @@ $parent2_phone = isset($parents['Parent2']) ? $parents['Parent2']['phone'] : ($c
       <div class="mb-4">
          <label class="block text-gray-700">Church Class</label>
          <select name="church_class" required class="w-full border p-2 rounded">
+         <option value="No Class" <?php if($child['church_class'] == 'No Class') echo 'selected'; ?>>No Class</option>
             <option value="Toddlers" <?php if($child['church_class'] == 'Toddlers') echo 'selected'; ?>>Toddlers</option>
             <option value="Intermediate I" <?php if($child['church_class'] == 'Intermediate I') echo 'selected'; ?>>Intermediate I</option>
             <option value="Intermediate II" <?php if($child['church_class'] == 'Intermediate II') echo 'selected'; ?>>Intermediate II</option>

@@ -163,6 +163,7 @@ function paginationLinks($current, $total) {
             <thead>
                <tr>
                   <th class="py-2 px-4 border">ID</th>
+                  <th class="py-2 px-4 border">AGE</th>
                   <th class="py-2 px-4 border">Name</th>
                   <th class="py-2 px-4 border">DOB</th>
                   <th class="py-2 px-4 border">Church Class</th>
@@ -175,6 +176,7 @@ function paginationLinks($current, $total) {
                   <?php foreach($children as $child): ?>
                      <tr class="text-center">
                         <td class="py-2 px-4 border"><?php echo htmlspecialchars($child['id']); ?></td>
+                        <td class="py-2 px-4 border"><?php echo htmlspecialchars($child['age']); ?></td>
                         <td class="py-2 px-4 border"><?php echo htmlspecialchars($child['name']); ?></td>
                         <td class="py-2 px-4 border"><?php echo htmlspecialchars($child['dob']); ?></td>
                         <td class="py-2 px-4 border"><?php echo htmlspecialchars($child['church_class']); ?></td>
